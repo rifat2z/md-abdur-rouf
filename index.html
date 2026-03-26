@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Md. Abdur Rouf (Rasel)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f1ec;
+            --fg: #1a1a1a;
+            --muted: #5c5c5c;
+            --accent: #1e3a3a;
+            --accent-light: #2d5555;
+            --card: #ffffff;
+            --border: #dcd8d0;
+            --highlight: #c9a227;
+            --sidebar-bg: #1e3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Background Effects */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 58, 58, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-element {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            top: -150px;
+            left: -150px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--highlight);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 40px rgba(30, 58, 58, 0.35);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(30, 58, 58, 0.45);
+        }
+
+        .download-btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .download-btn.loading svg {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Resume Layout */
+        .resume-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 120px;
+        }
+
+        .resume-card {
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, var(--sidebar-bg) 0%, #152828 100%);
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(201, 162, 39, 0.3), transparent);
+        }
+
+        /* Profile Image */
+        .profile-image-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(201, 162, 39, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(201, 162, 39, 0.4);
+        }
+
+        .profile-image-placeholder svg {
+            width: 60px;
+            height: 60px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sidebar Name */
+        .sidebar-name {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .sidebar-title {
+            text-align: center;
+            color: var(--highlight);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sidebar Section */
+        .sidebar-section {
+            margin-bottom: 35px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideRight 0.6s ease forwards;
+        }
+
+        .sidebar-section:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar-section:nth-child(3) { animation-delay: 0.3s; }
+        .sidebar-section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .sidebar-section-title {
+            color: var(--highlight);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-info-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+        }
+
+        .sidebar-info-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--highlight);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .sidebar-info-content {
+            flex: 1;
+        }
+
+        .sidebar-info-label {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .sidebar-info-value {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        /* Skills in Sidebar */
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 14px;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(201, 162, 39, 0.2);
+            border-color: var(--highlight);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 50px 50px 50px 50px;
+            background: var(--card);
+        }
+
+        .main-section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .main-section:nth-child(1) { animation-delay: 0.3s; }
+        .main-section:nth-child(2) { animation-delay: 0.4s; }
+        .main-section:nth-child(3) { animation-delay: 0.5s; }
+        .main-section:nth-child(4) { animation-delay: 0.6s; }
+        .main-section:nth-child(5) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+
+        .main-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--highlight);
+        }
+
+        .main-section-title h2 {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .main-section-icon {
+            width: 22px;
+            height: 22px;
+            color: var(--highlight);
+        }
+
+        /* Profile Text */
+        .profile-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        /* Experience */
+        .experience-card {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.02) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--highlight);
+            margin-bottom: 16px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .exp-duration {
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+            background: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .exp-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .exp-list li {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+
+        .exp-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--highlight);
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        /* Education Step by Step */
+        .edu-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .edu-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--highlight), var(--accent));
+            border-radius: 2px;
+        }
+
+        .edu-step {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.03) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .edu-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-step:hover {
+            border-color: var(--highlight);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(30, 58, 58, 0.08);
+        }
+
+        .edu-step::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--card);
+            border: 3px solid var(--highlight);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .edu-step-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .edu-step-subtitle {
+            font-size: 13px;
+            color: var(--highlight);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .edu-step-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .edu-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .edu-detail-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent);
+        }
+
+        /* Declaration */
+        .declaration-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.03) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .declaration-box::before {
+            content: '"';
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            font-size: 50px;
+            color: var(--highlight);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .declaration-text {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.8;
+            padding-left: 25px;
+        }
+
+        /* Signature */
+        .signature-area {
+            margin-top: 40px;
+            text-align: right;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .signature-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .signature-title {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .resume-card {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 30px;
+            }
+
+            .main-content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 24px;
+            }
+
+            .main-section-title h2 {
+                font-size: 16px;
+            }
+
+            .edu-step-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .download-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white !important; }
+            .bg-pattern, .float-element, .download-btn { display: none !important; }
+            .resume-card { 
+                box-shadow: none !important; 
+                border-radius: 0 !important;
+            }
+            .sidebar, .main-content { opacity: 1 !important; transform: none !important; }
+            .main-section, .sidebar-section { opacity: 1 !important; transform: none !important; animation: none !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-pattern"></div>
+    <div class="float-element float-1"></div>
+    <div class="float-element float-2"></div>
+
+    <!-- Download Button -->
+    <button class="download-btn" onclick="downloadPDF()" id="downloadBtn" aria-label="Download PDF Resume">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="downloadIcon">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7,10 12,15 17,10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span id="downloadText">Download PDF</span>
+    </button>
+
+    <!-- Resume -->
+    <div class="resume-wrapper">
+        <div class="resume-card" id="resumeContent">
+            
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <!-- Profile Image -->
+                <div class="profile-image-container">
+                    <!-- GitHub Direct Link Set Kora Holo (Raw Link) -->
+                    <img src="https://raw.githubusercontent.com/rifat2z/webimage/main/1000169243-removebg-preview.png" alt="Md. Abdur Rouf" class="profile-image" id="profileImg">
+                </div>
+
+                <h1 class="sidebar-name font-display">Md. Abdur Rouf</h1>
+                <p class="sidebar-title">Business Owner</p>
+
+                <!-- Contact Info -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Contact</h3>
+                    
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Phone</div>
+                            <div class="sidebar-info-value">+8801714-928011</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Address</div>
+                            <div class="sidebar-info-value">Zora Zaider Para, Ranirhat, Bogura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Personal</h3>
+                    
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Date of Birth</div>
+                            <div class="sidebar-info-value">15 October 1979</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Father's Name</div>
+                            <div class="sidebar-info-value">Late Ruhul Amin</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Nationality</div>
+                            <div class="sidebar-info-value">Bangladeshi</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Blood Group</div>
+                            <div class="sidebar-info-value">AB+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Skills</h3>
+                    <div>
+                        <span class="skill-tag">MS Word</span>
+                        <span class="skill-tag">Printing</span>
+                        <span class="skill-tag">Scanning</span>
+                        <span class="skill-tag">Business Management</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                
+                <!-- Profile -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <h2>Profile</h2>
+                    </div>
+                    <p class="profile-text">
+                        A polite, responsible, and experienced individual with strong interpersonal skills. Actively involved in business operations, particularly in computer studio and photocopy services. Skilled in managing customers, handling daily operations, and maintaining a professional work environment with dedication and intelligence.
+                    </p>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <h2>Work Experience</h2>
+                    </div>
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div class="exp-title">Owner / Operator - Computer Studio & Photocopy Shop</div>
+                            <div class="exp-duration">Present</div>
+                        </div>
+                        <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px;">
+                            Bogura, Bangladesh
+                        </div>
+                        <ul class="exp-list">
+                            <li>Managing daily business operations efficiently</li>
+                            <li>Providing computer services (typing, printing, scanning)</li>
+                            <li>Operating photocopy and document services</li>
+                            <li>Maintaining customer relationships through polite communication</li>
+                            <li>Handling sales, records, and basic financial management</li>
+                            <li>Ensuring smooth workflow and customer satisfaction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education Step by Step -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                        </svg>
+                        <h2>Educational Qualification</h2>
+                    </div>
+                    <div class="edu-timeline">
+                        <!-- Step 1: H.S.C -->
+                        <div class="edu-step">
+                            <div class="edu-step-title">H.S.C (Higher Secondary Certificate)</div>
+                            <div class="edu-step-subtitle">General Group</div>
+                            <div class="edu-step-details">
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Year: 1997</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    </svg>
+                                    <span>Board: Rajshahi</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                    </svg>
+                                    <span>Result: 2nd Division</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: S.S.C -->
+                        <div class="edu-step">
+                            <div class="edu-step-title">S.S.C (Secondary School Certificate)</div>
+                            <div class="edu-step-subtitle">General Group</div>
+                            <div class="edu-step-details">
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Year: 1995</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    </svg>
+                                    <span>Board: Rajshahi</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                    </svg>
+                                    <span>Result: 2nd Division</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Declaration -->
+                <div class="main-section" style="margin-bottom: 0;">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        <h2>Declaration</h2>
+                    </div>
+                    <div class="declaration-box">
+                        <p class="declaration-text">
+                            I hereby declare that all the information provided above is true and correct to the best of my knowledge and belief.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div class="signature-area">
+                    <div class="signature-name font-display">Md. Abdur Rouf (Rasel)</div>
+                    <div class="signature-title">Applicant</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PDF Download
+        function downloadPDF() {
+            const btn = document.getElementById('downloadBtn');
+            const text = document.getElementById('downloadText');
+            
+            btn.classList.add('loading');
+            text.textContent = 'Generating...';
+            
+            const element = document.getElementById('resumeContent');
+            
+            const opt = {
+                margin: 0,
+                filename: 'Md_Abdur_Rouf_Rasel_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            };
+            
+            html2pdf().set(opt).from(element).save().then(function() {
+                btn.classList.remove('loading');
+                text.textContent = 'Downloaded!';
+                setTimeout(() => {
+                    text.textContent = 'Download PDF';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Md. Abdur Rouf (Rasel)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f1ec;
+            --fg: #1a1a1a;
+            --muted: #5c5c5c;
+            --accent: #1e3a3a;
+            --accent-light: #2d5555;
+            --card: #ffffff;
+            --border: #dcd8d0;
+            --highlight: #c9a227;
+            --sidebar-bg: #1e3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Background Effects */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 58, 58, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-element {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            top: -150px;
+            left: -150px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--highlight);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 40px rgba(30, 58, 58, 0.35);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(30, 58, 58, 0.45);
+        }
+
+        .download-btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .download-btn.loading svg {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Resume Layout */
+        .resume-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 120px;
+        }
+
+        .resume-card {
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, var(--sidebar-bg) 0%, #152828 100%);
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(201, 162, 39, 0.3), transparent);
+        }
+
+        /* Profile Image */
+        .profile-image-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(201, 162, 39, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(201, 162, 39, 0.4);
+        }
+
+        .profile-image-placeholder svg {
+            width: 60px;
+            height: 60px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sidebar Name */
+        .sidebar-name {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .sidebar-title {
+            text-align: center;
+            color: var(--highlight);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sidebar Section */
+        .sidebar-section {
+            margin-bottom: 35px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideRight 0.6s ease forwards;
+        }
+
+        .sidebar-section:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar-section:nth-child(3) { animation-delay: 0.3s; }
+        .sidebar-section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .sidebar-section-title {
+            color: var(--highlight);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-info-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+        }
+
+        .sidebar-info-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--highlight);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .sidebar-info-content {
+            flex: 1;
+        }
+
+        .sidebar-info-label {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .sidebar-info-value {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        /* Skills in Sidebar */
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 14px;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(201, 162, 39, 0.2);
+            border-color: var(--highlight);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 50px 50px 50px 50px;
+            background: var(--card);
+        }
+
+        .main-section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .main-section:nth-child(1) { animation-delay: 0.3s; }
+        .main-section:nth-child(2) { animation-delay: 0.4s; }
+        .main-section:nth-child(3) { animation-delay: 0.5s; }
+        .main-section:nth-child(4) { animation-delay: 0.6s; }
+        .main-section:nth-child(5) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+
+        .main-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--highlight);
+        }
+
+        .main-section-title h2 {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .main-section-icon {
+            width: 22px;
+            height: 22px;
+            color: var(--highlight);
+        }
+
+        /* Profile Text */
+        .profile-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        /* Experience */
+        .experience-card {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.02) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--highlight);
+            margin-bottom: 16px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .exp-duration {
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+            background: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .exp-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .exp-list li {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+
+        .exp-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--highlight);
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        /* Education Step by Step */
+        .edu-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .edu-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--highlight), var(--accent));
+            border-radius: 2px;
+        }
+
+        .edu-step {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.03) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .edu-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-step:hover {
+            border-color: var(--highlight);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(30, 58, 58, 0.08);
+        }
+
+        .edu-step::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--card);
+            border: 3px solid var(--highlight);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .edu-step-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .edu-step-subtitle {
+            font-size: 13px;
+            color: var(--highlight);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .edu-step-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .edu-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .edu-detail-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent);
+        }
+
+        /* Declaration */
+        .declaration-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(30, 58, 58, 0.03) 0%, rgba(30, 58, 58, 0.01) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .declaration-box::before {
+            content: '"';
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            font-size: 50px;
+            color: var(--highlight);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .declaration-text {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.8;
+            padding-left: 25px;
+        }
+
+        /* Signature */
+        .signature-area {
+            margin-top: 40px;
+            text-align: right;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .signature-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .signature-title {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .resume-card {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 30px;
+            }
+
+            .main-content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 24px;
+            }
+
+            .main-section-title h2 {
+                font-size: 16px;
+            }
+
+            .edu-step-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .download-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white !important; }
+            .bg-pattern, .float-element, .download-btn { display: none !important; }
+            .resume-card { 
+                box-shadow: none !important; 
+                border-radius: 0 !important;
+            }
+            .sidebar, .main-content { opacity: 1 !important; transform: none !important; }
+            .main-section, .sidebar-section { opacity: 1 !important; transform: none !important; animation: none !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-pattern"></div>
+    <div class="float-element float-1"></div>
+    <div class="float-element float-2"></div>
+
+    <!-- Download Button -->
+    <button class="download-btn" onclick="downloadPDF()" id="downloadBtn" aria-label="Download PDF Resume">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="downloadIcon">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7,10 12,15 17,10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span id="downloadText">Download PDF</span>
+    </button>
+
+    <!-- Resume -->
+    <div class="resume-wrapper">
+        <div class="resume-card" id="resumeContent">
+            
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <!-- Profile Image -->
+                <div class="profile-image-container">
+                    <!-- GitHub Direct Link Set Kora Holo (Raw Link) -->
+                    <img src="https://raw.githubusercontent.com/rifat2z/webimage/main/1000169243-removebg-preview.png" alt="Md. Abdur Rouf" class="profile-image" id="profileImg">
+                </div>
+
+                <h1 class="sidebar-name font-display">Md. Abdur Rouf</h1>
+                <p class="sidebar-title">Business Owner</p>
+
+                <!-- Contact Info -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Contact</h3>
+                    
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Phone</div>
+                            <div class="sidebar-info-value">+8801714-928011</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Address</div>
+                            <div class="sidebar-info-value">Zora Zaider Para, Ranirhat, Bogura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Personal</h3>
+                    
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Date of Birth</div>
+                            <div class="sidebar-info-value">15 October 1979</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Father's Name</div>
+                            <div class="sidebar-info-value">Late Ruhul Amin</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Nationality</div>
+                            <div class="sidebar-info-value">Bangladeshi</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-info-item">
+                        <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        <div class="sidebar-info-content">
+                            <div class="sidebar-info-label">Blood Group</div>
+                            <div class="sidebar-info-value">AB+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Skills</h3>
+                    <div>
+                        <span class="skill-tag">MS Word</span>
+                        <span class="skill-tag">Printing</span>
+                        <span class="skill-tag">Scanning</span>
+                        <span class="skill-tag">Business Management</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                
+                <!-- Profile -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <h2>Profile</h2>
+                    </div>
+                    <p class="profile-text">
+                        A polite, responsible, and experienced individual with strong interpersonal skills. Actively involved in business operations, particularly in computer studio and photocopy services. Skilled in managing customers, handling daily operations, and maintaining a professional work environment with dedication and intelligence.
+                    </p>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <h2>Work Experience</h2>
+                    </div>
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div class="exp-title">Owner / Operator - Computer Studio & Photocopy Shop</div>
+                            <div class="exp-duration">Present</div>
+                        </div>
+                        <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px;">
+                            Bogura, Bangladesh
+                        </div>
+                        <ul class="exp-list">
+                            <li>Managing daily business operations efficiently</li>
+                            <li>Providing computer services (typing, printing, scanning)</li>
+                            <li>Operating photocopy and document services</li>
+                            <li>Maintaining customer relationships through polite communication</li>
+                            <li>Handling sales, records, and basic financial management</li>
+                            <li>Ensuring smooth workflow and customer satisfaction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education Step by Step -->
+                <div class="main-section">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                        </svg>
+                        <h2>Educational Qualification</h2>
+                    </div>
+                    <div class="edu-timeline">
+                        <!-- Step 1: H.S.C -->
+                        <div class="edu-step">
+                            <div class="edu-step-title">H.S.C (Higher Secondary Certificate)</div>
+                            <div class="edu-step-subtitle">General Group</div>
+                            <div class="edu-step-details">
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Year: 1997</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    </svg>
+                                    <span>Board: Rajshahi</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                    </svg>
+                                    <span>Result: 2nd Division</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: S.S.C -->
+                        <div class="edu-step">
+                            <div class="edu-step-title">S.S.C (Secondary School Certificate)</div>
+                            <div class="edu-step-subtitle">General Group</div>
+                            <div class="edu-step-details">
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Year: 1995</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    </svg>
+                                    <span>Board: Rajshahi</span>
+                                </div>
+                                <div class="edu-detail-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                    </svg>
+                                    <span>Result: 2nd Division</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Declaration -->
+                <div class="main-section" style="margin-bottom: 0;">
+                    <div class="main-section-title">
+                        <svg class="main-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        <h2>Declaration</h2>
+                    </div>
+                    <div class="declaration-box">
+                        <p class="declaration-text">
+                            I hereby declare that all the information provided above is true and correct to the best of my knowledge and belief.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div class="signature-area">
+                    <div class="signature-name font-display">Md. Abdur Rouf (Rasel)</div>
+                    <div class="signature-title">Applicant</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PDF Download
+        function downloadPDF() {
+            const btn = document.getElementById('downloadBtn');
+            const text = document.getElementById('downloadText');
+            
+            btn.classList.add('loading');
+            text.textContent = 'Generating...';
+            
+            const element = document.getElementById('resumeContent');
+            
+            const opt = {
+                margin: 0,
+                filename: 'Md_Abdur_Rouf_Rasel_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            };
+            
+            html2pdf().set(opt).from(element).save().then(function() {
+                btn.classList.remove('loading');
+                text.textContent = 'Downloaded!';
+                setTimeout(() => {
+                    text.textContent = 'Download PDF';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
