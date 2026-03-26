@@ -242,6 +242,29 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* Contact Item with Icon */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            padding: 6px 0;
+        }
+
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--highlight);
+            flex-shrink: 0;
+        }
+
         /* Address & Skills List Style */
         .custom-list {
             list-style: none;
@@ -277,19 +300,19 @@
             left: 0;
         }
 
-        /* Sidebar Grid for Personal Info */
+        /* Sidebar Grid for Personal Info (Updated for Icons) */
         .sidebar-info-grid {
             display: grid;
-            gap: 8px;
+            gap: 10px;
         }
 
         .sidebar-info-item {
             display: flex;
-            flex-direction: column;
-            gap: 2px;
-            padding: 6px 10px;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 12px;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 6px;
+            border-radius: 8px;
             border-left: 2px solid transparent;
             transition: all 0.3s ease;
         }
@@ -297,6 +320,21 @@
         .sidebar-info-item:hover {
             background: rgba(255, 255, 255, 0.06);
             border-left-color: var(--highlight);
+            transform: translateX(4px);
+        }
+
+        .sidebar-info-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--highlight);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .sidebar-info-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-info-label {
@@ -304,10 +342,11 @@
             color: rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
 
         .sidebar-info-value {
-            font-size: 12px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.95);
             line-height: 1.3;
         }
@@ -660,18 +699,26 @@
                 <h1 class="sidebar-name font-display">Md. Abdur Rouf</h1>
                 <p class="sidebar-title">Business Owner</p>
 
-                <!-- Contact Info -->
+                <!-- Contact Info (Updated with Icons & New Info) -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-section-title">Contact</h3>
-                    <ul class="custom-list">
-                        <li class="custom-list-item">
-                            <span class="custom-list-label">Phone</span>
-                            <span style="color: white;">+8801714-928011</span>
-                        </li>
-                    </ul>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>+8801714-928011</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>+8801577-216487</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>raseljaider@gmail.com</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Address Section (Updated Format) -->
+                <!-- Address Section -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-section-title">Address</h3>
                     <ul class="custom-list">
@@ -696,50 +743,77 @@
                     </ul>
                 </div>
 
-                <!-- Full Personal Details -->
+                <!-- Full Personal Details (With Icons) -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-section-title">Personal Details</h3>
                     <div class="sidebar-info-grid">
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Father's Name</div>
-                            <div class="sidebar-info-value">Late Ruhul Amin</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Father's Name</div>
+                                <div class="sidebar-info-value">Late Ruhul Amin</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Mother's Name</div>
-                            <div class="sidebar-info-value">Mst. Mazeda Begum</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Mother's Name</div>
+                                <div class="sidebar-info-value">Mst. Mazeda Begum</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Date of Birth</div>
-                            <div class="sidebar-info-value">15 Oct 1979</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Date of Birth</div>
+                                <div class="sidebar-info-value">15 Oct 1979</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Nationality</div>
-                            <div class="sidebar-info-value">Bangladeshi</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Nationality</div>
+                                <div class="sidebar-info-value">Bangladeshi</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Gender</div>
-                            <div class="sidebar-info-value">Male</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Gender</div>
+                                <div class="sidebar-info-value">Male</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Religion</div>
-                            <div class="sidebar-info-value">Islam</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Religion</div>
+                                <div class="sidebar-info-value">Islam</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Marital Status</div>
-                            <div class="sidebar-info-value">Married</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Marital Status</div>
+                                <div class="sidebar-info-value">Married</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Blood Group</div>
-                            <div class="sidebar-info-value">AB+</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.74 5.74-5.74 5.74-5.74-5.74z"></path><path d="M10 16l-6 6"></path><path d="M19 21l-6-6"></path><path d="M6 21l12-12"></path></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Blood Group</div>
+                                <div class="sidebar-info-value">AB+</div>
+                            </div>
                         </div>
                         <div class="sidebar-info-item">
-                            <div class="sidebar-info-label">Height</div>
-                            <div class="sidebar-info-value">5'6"</div>
+                            <svg class="sidebar-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            <div class="sidebar-info-content">
+                                <div class="sidebar-info-label">Height</div>
+                                <div class="sidebar-info-value">5'6"</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Skills Section (Updated List) -->
+                <!-- Skills Section -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-section-title">Skills</h3>
                     <ul class="custom-list">
