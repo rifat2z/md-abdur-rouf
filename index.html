@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Md. Abdur Rouf (Rasel)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- html2pdf library removed as we are using direct link -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,7 +19,7 @@
             --highlight: #c9a227;
             --sidebar-bg: #1e3a3a;
         }
-/* 1 *//* 2 */
+
         * {
             margin: 0;
             padding: 0;
@@ -82,7 +82,7 @@
             50% { transform: translate(30px, 30px); }
         }
 
-        /* Download Button */
+        /* Download Button Style for Anchor Tag */
         .download-btn {
             position: fixed;
             bottom: 30px;
@@ -101,6 +101,7 @@
             gap: 10px;
             box-shadow: 0 10px 40px rgba(30, 58, 58, 0.35);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none; /* Remove underline from link */
         }
 
         .download-btn:hover {
@@ -110,14 +111,6 @@
 
         .download-btn:active {
             transform: translateY(-2px) scale(0.98);
-        }
-
-        .download-btn.loading svg {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         /* Resume Layout */
@@ -675,15 +668,15 @@
     <div class="float-element float-1"></div>
     <div class="float-element float-2"></div>
 
-    <!-- Download Button -->
-    <button class="download-btn" onclick="downloadPDF()" id="downloadBtn" aria-label="Download PDF Resume">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="downloadIcon">
+    <!-- Download Button (Updated with Direct Link) -->
+    <a href="https://drive.google.com/file/d/1dlw6-QH0h61nfLr1dWggCBudacoyIbZq/view?usp=drive_link" target="_blank" class="download-btn" id="downloadBtn" aria-label="Download PDF Resume from Google Drive">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7,10 12,15 17,10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
         <span id="downloadText">Download PDF</span>
-    </button>
+    </a>
 
     <!-- Resume -->
     <div class="resume-wrapper">
@@ -969,41 +962,6 @@
         </div>
     </div>
 
-    <script>
-        // PDF Download
-        function downloadPDF() {
-            const btn = document.getElementById('downloadBtn');
-            const text = document.getElementById('downloadText');
-            
-            btn.classList.add('loading');
-            text.textContent = 'Generating...';
-            
-            const element = document.getElementById('resumeContent');
-            
-            const opt = {
-                margin: 0,
-                filename: 'Md_Abdur_Rouf_Rasel_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 2,
-                    useCORS: true,
-                    letterRendering: true
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'a4', 
-                    orientation: 'portrait' 
-                }
-            };
-            
-            html2pdf().set(opt).from(element).save().then(function() {
-                btn.classList.remove('loading');
-                text.textContent = 'Downloaded!';
-                setTimeout(() => {
-                    text.textContent = 'Download PDF';
-                }, 2000);
-            });
-        }
-    </script>
+    <!-- No Javascript needed anymore since we are using direct link -->
 </body>
 </html>
